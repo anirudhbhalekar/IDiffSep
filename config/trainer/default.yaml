@@ -1,0 +1,10 @@
+_target_: pytorch_lightning.Trainer
+accumulate_grad_batches: 8
+min_epochs: 1
+max_epochs: 250
+deterministic: true
+accelerator: gpu
+devices: 1
+check_val_every_n_epoch: 1
+default_root_dir: /research/milsrg1/user_workspace/ab2810/IIB_Proj/diffusion-separation/saves
+profiler: false
