@@ -1,35 +1,10 @@
 Diffusion-based Generative Speech Source Separation
 ===================================================
 
-This repository contains the code to reproduce the results of the paper [Diffusion-based Generative Speech
+This repository contains the code based on the model from [Diffusion-based Generative Speech
 Source Separation](https://arxiv.org/abs/2210.17327) presented at ICASSP 2023.
 
-We propose DiffSep, a new single channel source separation method based on
-score-matching of a stochastic differential equation (SDE). We craft a tailored
-continuous time diffusion-mixing process starting from the separated sources
-and converging to a Gaussian distribution centered on their mixture. This
-formulation lets us apply the machinery of score-based generative modelling.
-First, we train a neural network to approximate the score function of the
-marginal probabilities or the diffusion-mixing process. Then, we use it to
-solve the reverse time SDE that progressively separates the sources starting
-from their mixture. We propose a modified training strategy to handle model
-mismatch and source permutation ambiguity. Experiments on the WSJ0 2mix dataset
-demonstrate the potential of the method. Furthermore, the method is also
-suitable for speech enhancement and shows performance competitive with prior
-work on the VoiceBank-DEMAND dataset.
-
-Show Me How to Separate Wav Files!
-----------------------------------
-
-We got you covered. Just run the following command (after setting up the environment as described under Training).
-```bash
-python separate.py path/to/wavfiles/folder path/to/output/folder
-```
-where `path/to/wavfiles/folder` points to a folder containing wavfiles. The
-input files should be sampled at `8 kHz` for the default model. Two speakers
-are separated and stored in `path/to/output/folder/s1` and
-`path/to/output/folder/s2`, respectively.
-The model weights are stored on [huggingface](https://huggingface.co/fakufaku/diffsep).
+The modified version conditions the existing DiffSep network with a transformer-based stage 1 network. 
 
 
 Configuration
@@ -86,18 +61,6 @@ data/wsj0_mix/
             |-- cv
             |-- tr
             `-- tt
-```
-
-The `VCTK-DEMAND` dataset is expected in `data/VCTK_DEMAND`
-
-```
-data/VCTK_DEMAND/
-|--train
-|   |-- noisy
-|   `-- clean
-`-- test
-    |-- noisy
-    `-- clean
 ```
 
 Training
